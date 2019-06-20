@@ -27,21 +27,90 @@ Time [s],High,Low,Duty,Frequency
 
 ## Building
 
-Download the [Logic SDK][sdk] and extract it somewhere on your
-machine.  In my case, it's `~/stuff/SaleaeAnalyzerSdk-1.1.32`.
+### MacOS
 
-Clone the repo and cd into the top level of it:
+Dependencies:
+- XCode with command line tools
+- CMake 3.11+
 
-    git clone https://github.com/dustin/logic-pwm
-    cd logic-pwm
+Installing command line tools after XCode is installed:
+```
+xcode-select --install
+```
 
-Symlink the `include` and `lib` directories into your tree:
+Then open XCode, open Preferences from the main menu, go to locations, and select the only option under 'Command line tools'.
 
-    ln -s ~/stuff/SaleaeAnalyzerSdk-1.1.32/{include,lib} .
+Installing CMake on MacOS:
 
-Run the build script:
+1. Download the binary distribution for MacOS, `cmake-*-Darwin-x86_64.dmg`
+2. Install the usual way by dragging into applications.
+3. Open a terminal and run the following:
+```
+/Applications/CMake.app/Contents/bin/cmake-gui --install
+```
+*Note: Errors may occur if older versions of CMake are installed.*
 
-    ./build_analyzer.py
+Building the analyzer:
+```
+mkdir build
+cd build
+cmake ..
+cmake --build .
+```
+
+### Ubuntu 16.04
+
+Dependencies:
+- CMake 3.11+
+- gcc 4.8+
+
+Misc dependencies:
+
+```
+sudo apt-get install build-essential
+```
+
+Building the analyzer:
+```
+mkdir build
+cd build
+cmake ..
+cmake --build .
+```
+
+### Windows
+
+Dependencies:
+- Visual Studio 2015 Update 3
+- CMake 3.11+
+
+**Visual Studio 2015**
+
+*Note - newer versions of Visual Studio should be fine.*
+
+Setup options:
+- Programming Languages > Visual C++ > select all sub-components.
+
+Note - if CMake has any problems with the MSVC compiler, it's likely a component is missing.
+
+**CMake**
+
+Download and install the latest CMake release here.
+https://cmake.org/download/
+
+Building the analyzer:
+```
+mkdir build
+cd build
+cmake ..
+```
+
+Then, build the newly created solution file located here: `build\can_analyzer.sln`
+```
+msbuild  pwm_analyzer.vcxproj -p:Configuration=Release
+```
+
+Copy the resulting dll from logic-pwm\build\Analyzers\Release\pwm_analyzer.dll into Program Files\Saleae Inc\Analyzers
 
 ## Installing
 
