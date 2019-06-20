@@ -110,7 +110,6 @@ Then, build the newly created solution file located here: `build\can_analyzer.sl
 msbuild  pwm_analyzer.vcxproj -p:Configuration=Release
 ```
 
-Copy the resulting dll from logic-pwm\build\Analyzers\Release\pwm_analyzer.dll into Program Files\Saleae Inc\Analyzers
 
 ## Installing
 
@@ -118,6 +117,9 @@ In the Develoepr tab in Logic preferences, specify the path for
 loading new plugins, then copy the built plugin into that location:
 
     cp release/* /path/specified/in/Logic/preferences
+
+Alternatively, just copy the resulting dll from logic-pwm\build\Analyzers\Release\pwm_analyzer.dll into Program Files\Saleae Inc\Analyzers
+
 
 [logic]: https://www.saleae.com/downloads
 [sdk]: http://support.saleae.com/hc/en-us/articles/201104644-Analyzer-SDK
