@@ -26,6 +26,9 @@ public:
     double Width(U64 l, U64 m) { return SamplesToUs(m - l); }
     double Value(U64 l, U64 m, U64 e);
 
+#pragma warning( push )
+#pragma warning( disable : 4251 ) //warning C4251: 'SerialAnalyzer::<...>' : class <...> needs to have dll-interface to be used by clients of class
+
 protected: //vars
     std::auto_ptr< PWMAnalyzerSettings > mSettings;
     std::auto_ptr< PWMAnalyzerResults > mResults;
@@ -38,6 +41,8 @@ protected: //vars
 
     //PWM analysis vars:
     U32 mSampleRateHz;
+
+#pragma warning( pop )
 };
 
 extern "C" ANALYZER_EXPORT const char *__cdecl GetAnalyzerName();
